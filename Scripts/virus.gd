@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var health = 4
-var speed = 100
+var speed = 150
 var target = null
 
 func _ready():
@@ -14,7 +14,7 @@ func _physics_process(delta):
 		move_and_slide()
 
 func take_damage():
-	print("burn")
+	#print("burn")
 	health -= 1
 	if health == 0:
 		queue_free()

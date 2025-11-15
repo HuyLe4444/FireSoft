@@ -46,6 +46,7 @@ right={
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Virus"
 2d_physics/layer_3="Fire"
+2d_physics/layer_4="Core"
 
 [rendering]
 

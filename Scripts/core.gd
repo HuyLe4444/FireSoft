@@ -1,8 +1,8 @@
-extends Node2D
+extends StaticBody2D
 
 var health = 100
 
-func take_damage(amount = 10):
+func take_damage():
 	health -= 10
 	print("Core Health ", health)
 	if health <= 10:

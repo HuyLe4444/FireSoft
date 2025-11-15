@@ -8,7 +8,7 @@
 [node name="World" type="Node2D"]
 script = ExtResource("1_p74ju")
 
-[node name="Player" parent="." instance=ExtResource("1_m1qex")]
+[node name="Player" parent="." groups=["player"] instance=ExtResource("1_m1qex")]
 
 [node name="virus" parent="." instance=ExtResource("3_a3bbp")]
 position = Vector2(354, 320)
@@ -17,7 +17,7 @@ position = Vector2(354, 320)
 position = Vector2(558, 318)
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.05
+wait_time = 0.01
 
 [node name="SpawnTime" type="Timer" parent="."]
 wait_time = 2.0

@@ -2,6 +2,7 @@ extends Node2D
 
 @export var fire = preload("res://Scenes/fire.tscn")
 @export var virus = preload("res://Scenes/virus.tscn")
+@export var slow_virus = preload("res://Scenes/slow_virus.tscn")
 
 var screen_size = Vector2(1152, 648)
 
@@ -16,7 +17,14 @@ func fire_spawn():
 	add_child(obj)
 	
 func virus_spawn():
-	var enemy = virus.instantiate()
+	var rand_enemy = 0 if randf() < 0.8 else 1
+	var enemy
+	
+	match rand_enemy:
+		0:
+			enemy = virus.instantiate()
+		1:
+			enemy = slow_virus.instantiate()
 	enemy.global_position = get_random_edge_position()
 	add_child(enemy)
 	
