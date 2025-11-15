@@ -41,7 +41,6 @@ func get_random_edge_position():
 			pos = Vector2(-50, randf_range(0, screen_size.y))
 		3:  # Right
 			pos = Vector2(screen_size.x + 50, randf_range(0, screen_size.y))
-	
 	return pos
 
 func _on_timer_timeout():

@@ -3,12 +3,14 @@ extends CharacterBody2D
 var health = 10
 var speed = 150
 var target = null
+var is_frozen = false
 
 func _ready():
 	target = get_tree().get_first_node_in_group("core")
+	add_to_group("enemy")
 
 func _physics_process(delta):
-	if target:
+	if target and not is_frozen:
 		var direction = (target.global_position - global_position).normalized()
 		velocity = direction * speed
 		move_and_slide()
@@ -21,6 +23,15 @@ func take_damage():
 		if player and player.has_method("add_energy"):
 			player.add_energy(5)
 		queue_free()
+		
+func freeze():
+	is_frozen = true
+	speed = 0
+	velocity = Vector2.ZERO
+
+func unfreeze(original_speed):
+	is_frozen = false
+	speed = original_speed
 
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("core"):

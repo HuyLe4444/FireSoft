@@ -5,12 +5,14 @@ var speed = 100
 var target = null
 var is_casting = false
 var has_cast = false
+var is_frozen = false
 
 func _ready():
 	target = get_tree().get_first_node_in_group("player")
+	add_to_group("enemy")
 
 func _physics_process(delta):
-	if target and not is_casting and not has_cast:
+	if target and not is_casting and not has_cast and not is_frozen:
 		var distance = global_position.distance_to(target.global_position)
 		
 		if distance <= 200:
@@ -33,6 +35,15 @@ func take_damage():
 		if target and target.has_method("remove_slow"):
 			target.remove_slow(self)
 		queue_free()
+
+func freeze():
+	is_frozen = true
+	speed = 0
+	velocity = Vector2.ZERO
+
+func unfreeze(original_speed):
+	is_frozen = false
+	speed = original_speed
 
 func _on_cast_time_timeout():
 	is_casting = false

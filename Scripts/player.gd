@@ -3,6 +3,10 @@ extends CharacterBody2D
 @export var bomb = preload("res://Scenes/bomb.tscn")
 @export var flame = preload("res://Scenes/flame.tscn")
 @export var speed = 400
+
+var time_stop_active = false
+var frozen_enemies = []
+
 var base_speed = 400
 var slow_sources = []
 var energy = 0
@@ -70,6 +74,18 @@ func _input(event):
 		is_flamethrowing = true
 		flamethrower_timer = 5.0
 		flame_spawn = 0.0
+	
+	if event.is_action_pressed("key_E") and not time_stop_active:
+		if energy >= 0:
+			energy -= 0
+			time_stop_active = true
+			
+			time_stop_effect()
+			enemy_frozen()
+			
+			await get_tree().create_timer(2.0).timeout
+			
+			end_time_stop()
 		
 func fire_bomb():
 	var bomb_instance = bomb.instantiate()
@@ -95,4 +111,39 @@ func flame_cone():
 		flame_instance.speed = randf_range(700, 900)
 		
 		get_parent().add_child(flame_instance)
+
+func time_stop_effect():
+	var canvas_layer = CanvasLayer.new()
+	canvas_layer.name = "TimeStopEffect"
+	canvas_layer.layer = 100
+	
+	var color_rect = ColorRect.new()
+	color_rect.name = "ColorOverlay"
+	#color_rect.color = Color(0.8, 0.6, 0.2, 0.4)
+	color_rect.color = Color(1.0, 0.8, 0.0, 0.3)
+	color_rect.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	
+	canvas_layer.add_child(color_rect)
+	get_tree().root.add_child(canvas_layer)
+	
+func enemy_frozen():
+	frozen_enemies.clear()
+	
+	for enemy in get_tree().get_nodes_in_group("enemy"):
+		if enemy.has_method("freeze"):
+			var original_speed = enemy.speed
+			frozen_enemies.append({"enemy": enemy, "original_speed": original_speed})
+			enemy.freeze()
+	
+func end_time_stop():
+	var effect = get_tree().root.get_node_or_null("TimeStopEffect")
+	if effect:
+		effect.queue_free()
+	
+	for enemy in frozen_enemies:
+		if is_instance_valid(enemy["enemy"]):
+			enemy["enemy"].unfreeze(enemy["original_speed"])
+	
+	frozen_enemies.clear()
+	time_stop_active = false
 	
