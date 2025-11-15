@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkerjinjgibqj"]
+
+[ext_resource type="Script" path="res://Scripts/explosion.gd" id="1_4yn8r"]
+
+[sub_resource type="Curve" id="Curve_bq6vy"]
+_data = [Vector2(0.0224719, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.428571), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_410x8"]
+offsets = PackedFloat32Array(0, 0.54, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.937255, 0.27451, 1, 1, 1, 1, 0.380392)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fg711"]
+radius = 30.0
+
+[node name="explosion" type="Node2D"]
+script = ExtResource("1_4yn8r")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+scale = Vector2(2, 2)
+amount = 300
+lifetime = 2.0
+speed_scale = 3.0
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 60.0
+scale_amount_min = 10.0
+scale_amount_max = 40.0
+scale_amount_curve = SubResource("Curve_bq6vy")
+color_ramp = SubResource("Gradient_410x8")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(5, 5)
+shape = SubResource("CircleShape2D_fg711")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

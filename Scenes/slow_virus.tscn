@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7o2g2e4cgq08"]
+[gd_scene load_steps=4 format=3 uid="uid://bpd6b7cbjwyx5"]
 
 [ext_resource type="Script" path="res://Scripts/slow_virus.gd" id="1_qwl01"]
 [ext_resource type="Texture2D" uid="uid://ci2cp0lllqpad" path="res://icon.svg" id="1_x5mtb"]

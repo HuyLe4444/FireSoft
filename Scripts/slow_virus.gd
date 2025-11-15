@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var health = 2
+var health = 5
 var speed = 100
 var target = null
 var is_casting = false
@@ -28,6 +28,8 @@ func start_casting():
 func take_damage():
 	health -= 1
 	if health == 0:
+		if target and target.has_method("add_energy"):
+			target.add_energy(5)
 		if target and target.has_method("remove_slow"):
 			target.remove_slow(self)
 		queue_free()

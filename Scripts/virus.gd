@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var health = 4
+var health = 10
 var speed = 150
 var target = null
 
@@ -17,6 +17,9 @@ func take_damage():
 	#print("burn")
 	health -= 1
 	if health == 0:
+		var player = get_tree().get_first_node_in_group("player")
+		if player and player.has_method("add_energy"):
+			player.add_energy(5)
 		queue_free()
 
 func _on_area_2d_body_entered(body):

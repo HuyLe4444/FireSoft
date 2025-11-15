@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://crtmjgp3pfha3"]
+[gd_scene load_steps=5 format=3 uid="uid://e7w577g31i7p"]
 
 [ext_resource type="Texture2D" uid="uid://ci2cp0lllqpad" path="res://icon.svg" id="1_ubtea"]
 [ext_resource type="Script" path="res://Scripts/virus.gd" id="1_xwqk0"]
