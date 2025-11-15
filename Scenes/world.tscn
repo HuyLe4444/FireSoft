@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkv2dmjei2y03"]
+
+[ext_resource type="PackedScene" uid="uid://3llj4o4iioey" path="res://Scenes/player.tscn" id="1_m1qex"]
+[ext_resource type="Script" path="res://Scripts/world.gd" id="1_p74ju"]
+[ext_resource type="PackedScene" uid="uid://crtmjgp3pfha3" path="res://Scenes/virus.tscn" id="3_a3bbp"]
+[ext_resource type="PackedScene" uid="uid://c4jmq4rc2iv7j" path="res://Scenes/core.tscn" id="4_5wjbu"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_p74ju")
+
+[node name="Player" parent="." instance=ExtResource("1_m1qex")]
+
+[node name="virus" parent="." instance=ExtResource("3_a3bbp")]
+position = Vector2(354, 320)
+
+[node name="core" parent="." groups=["core"] instance=ExtResource("4_5wjbu")]
+position = Vector2(558, 318)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+
+[node name="SpawnTime" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="SpawnTime" to="." method="_on_spawn_time_timeout"]
