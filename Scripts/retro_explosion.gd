@@ -1,11 +1,11 @@
 extends Node2D
 
 var fire = preload("res://Scenes/fire.tscn")
-var damage_radius = 150
+var damage_radius = 200
 
 func _ready():
-	$CPUParticles2D.emitting = true
-	$CPUParticles2D.one_shot = true
+	$retro_explode.emitting = true
+	$retro_explode.one_shot = true
 	
 	deal_damage()
 	fire_carpet()

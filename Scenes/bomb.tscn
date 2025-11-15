@@ -22,7 +22,6 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_w4dnh")
 
 [node name="TimeExplode" type="Timer" parent="."]
-wait_time = 2.0
 one_shot = true
 autostart = true
 

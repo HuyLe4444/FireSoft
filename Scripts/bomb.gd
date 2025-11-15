@@ -2,7 +2,8 @@ extends Node2D
 
 var speed = 600
 var direction = Vector2.ZERO
-var booom = preload("res://Scenes/explosion.tscn")
+#var booom = preload("res://Scenes/explosion.tscn")
+var booom = preload("res://Scenes/retro_explosion.tscn")
 
 func _ready():
 	direction = (get_global_mouse_position() - global_position).normalized()

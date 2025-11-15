@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://da2h1araeiq00"]
+
+[ext_resource type="Script" path="res://Scripts/flame.gd" id="1_ipwhr"]
+[ext_resource type="Texture2D" uid="uid://ci2cp0lllqpad" path="res://icon.svg" id="2_rfpeg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bwetu"]
+
+[node name="flame" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_ipwhr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.222656, 0.222656)
+texture = ExtResource("2_rfpeg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bwetu")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
