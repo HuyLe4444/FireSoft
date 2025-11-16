@@ -4,6 +4,7 @@ func _ready() -> void:
 	$Label/Label2.text = ("Score: ") + str(GameManager.point * 100)
 
 func _on_button_2_pressed() -> void:
+	GameManager.point = 0
 	get_tree().change_scene_to_file("res://Scenes/world.tscn")
 
 
