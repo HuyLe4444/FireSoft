@@ -21,13 +21,14 @@ func deal_damage():
 			body.take_damage()
 
 func fire_carpet():
-	var num_fires = 40
+	var num_fires = 20
 	for i in range(num_fires):
 		var fire = fire.instantiate()
 		var angle = randf() * TAU
 		var distance = randf() * damage_radius
 		var offset = Vector2(cos(angle), sin(angle)) * distance
 		fire.global_position = global_position + offset
+		fire.damage = 1
 		get_parent().add_child(fire)
 		
 		fire.get_node("Timer").wait_time = 10.0

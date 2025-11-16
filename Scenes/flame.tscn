@@ -18,7 +18,7 @@ texture = ExtResource("2_rfpeg")
 shape = SubResource("CircleShape2D_bwetu")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.4
 one_shot = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

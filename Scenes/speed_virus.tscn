@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bl5aj6e2n04qp"]
+
+[ext_resource type="Script" path="res://Scripts/speed_virus.gd" id="1_tvmhp"]
+[ext_resource type="Texture2D" uid="uid://ci2cp0lllqpad" path="res://icon.svg" id="2_v7s0i"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yi02h"]
+radius = 22.0227
+
+[node name="speed_virus" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_tvmhp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.351563, 0.351563)
+texture = ExtResource("2_v7s0i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_yi02h")
+
+[node name="CastTime" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="CastTime" to="." method="_on_cast_time_timeout"]

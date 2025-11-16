@@ -1,7 +1,7 @@
 extends Node2D
 
 var fire = preload("res://Scenes/fire.tscn")
-var damage_radius = 200
+var damage_radius = 150
 
 func _ready():
 	$retro_explode.emitting = true

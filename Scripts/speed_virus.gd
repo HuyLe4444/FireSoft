@@ -8,18 +8,18 @@ var is_casting = false
 var has_cast = false
 var is_frozen = false
 #var bonus_speed = 0
-#var speed_source = []
+#var buffed_enemies = []
 
 func _ready():
 	speed = speed + (GameManager.active_speed_buff_enemies * 50)
-	target = get_tree().get_first_node_in_group("player")
+	target = get_tree().get_first_node_in_group("core")
 	add_to_group("enemy")
 
 func _physics_process(delta):
 	if target and not is_casting and not has_cast and not is_frozen:
 		var distance = global_position.distance_to(target.global_position)
 		
-		if distance <= 200:
+		if distance <= 300:
 			start_casting()
 		else:
 			var direction = (target.global_position - global_position).normalized()
@@ -34,10 +34,18 @@ func start_casting():
 func take_damage():
 	health -= 1
 	if health <= 0:
-		if target and target.has_method("add_energy"):
-			target.add_energy(5)
-		if target and target.has_method("remove_slow"):
-			target.remove_slow(self)
+		#for enemy in buffed_enemies:
+			#if is_instance_valid(enemy) and enemy.has_method("erase_buff"):
+				#enemy.erase_buff(self)
+		if has_cast:
+			GameManager.active_speed_buff_enemies -= 1
+			for enemy in get_tree().get_nodes_in_group("enemy"):
+				if enemy != self and enemy.has_method("erase_buff"):
+					enemy.erase_buff(self)
+		
+		var player = get_tree().get_first_node_in_group("player")
+		if player and player.has_method("add_energy"):
+			player.add_energy(5)
 		queue_free()
 
 func freeze():
@@ -48,7 +56,20 @@ func freeze():
 func unfreeze(original_speed):
 	is_frozen = false
 	speed = original_speed
+
+func _on_cast_time_timeout():
+	is_casting = false
+	has_cast = true
+	apply_speed_up()
 	
+func apply_speed_up():
+	GameManager.active_speed_buff_enemies += 1
+	#buffed_enemies.clear()
+	for enemy in get_tree().get_nodes_in_group("enemy"):
+		if enemy != self and enemy.has_method("add_speed"):
+			enemy.add_speed(self)
+			#buffed_enemies.append(enemy)
+
 func add_speed(source):
 	speed = base_speed + (GameManager.active_speed_buff_enemies * 50)
 	
@@ -57,11 +78,3 @@ func erase_buff(source):
 	if speed <= base_speed:
 		speed = base_speed
 
-func _on_cast_time_timeout():
-	is_casting = false
-	has_cast = true
-	apply_slow()
-	
-func apply_slow():
-	if target and target.has_method("add_slow"):
-		target.add_slow(self)
