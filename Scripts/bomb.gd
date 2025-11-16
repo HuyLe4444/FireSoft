@@ -6,6 +6,7 @@ var direction = Vector2.ZERO
 var booom = preload("res://Scenes/retro_explosion.tscn")
 
 func _ready():
+	$AudioStreamPlayer2D.playing = true
 	direction = (get_global_mouse_position() - global_position).normalized()
 
 func _process(delta):

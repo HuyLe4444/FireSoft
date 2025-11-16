@@ -1,10 +1,11 @@
 extends Area2D
 
-var speed = 800
+var speed = 2000
 var direction = Vector2.ZERO
 var damage = 1
 
 func _ready():
+	$AudioStreamPlayer2D.playing = true
 	$Timer.start()
 
 func _process(delta):

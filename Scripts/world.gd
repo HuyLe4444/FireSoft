@@ -5,11 +5,14 @@ extends Node2D
 @export var slow_virus = preload("res://Scenes/slow_virus.tscn")
 @export var speed_virus = preload("res://Scenes/speed_virus.tscn")
 
-var screen_size = Vector2(1152, 648)
+var screen_size = Vector2.ZERO
 
 func _ready():
+	screen_size = get_viewport_rect().size
 	$Timer.start()
 	$SpawnTime.start()
+	
+	$core.global_position = screen_size / 2
 	
 func _process(delta):
 	print("Active: ", GameManager.active_speed_buff_enemies)
@@ -23,22 +26,21 @@ func fire_spawn():
 	
 func virus_spawn():
 	var rand_normal_enemy = 0 if randf() < 0.8 else 1
-	var rand_slow_enemy = 0 if randf() < 1 else 1
-	var rand_speed_enemy = 0 if randf() < 0.3 else 1
+	var rand_slow_enemy = 0 if randf() < 0.3 else 1
+	var rand_speed_enemy = 0 if randf() < 0.3 else 0
 	
-	#if rand_normal_enemy == 0:
-		#var enemy = virus.instantiate()
-		#enemy.global_position = get_random_edge_position()
-		#add_child(enemy)
+	if rand_normal_enemy == 0:
+		var enemy = virus.instantiate()
+		enemy.global_position = get_random_edge_position()
+		add_child(enemy)
 	if rand_slow_enemy == 0:
 		var enemy = slow_virus.instantiate()
 		enemy.global_position = get_random_edge_position()
 		add_child(enemy)
-	#if rand_speed_enemy == 0:
-		#var enemy = speed_virus.instantiate()
-		#enemy.global_position = get_random_edge_position()
-		#add_child(enemy)
-	
+	if rand_speed_enemy == 0:
+		var enemy = speed_virus.instantiate()
+		enemy.global_position = get_random_edge_position()
+		add_child(enemy)
 	
 func get_random_edge_position():
 	var edge = randi() % 4

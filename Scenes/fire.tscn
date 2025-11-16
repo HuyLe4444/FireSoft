@@ -34,6 +34,7 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_hlxrh")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
 
 [node name="DamageTime" type="Timer" parent="."]
 wait_time = 0.5

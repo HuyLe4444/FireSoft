@@ -3,7 +3,7 @@ extends StaticBody2D
 var health = 100
 
 func take_damage():
-	health -= 0
+	health -= 5
 	print("Core Health ", health)
 	if health <= 10:
 		game_over()

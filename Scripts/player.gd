@@ -2,12 +2,12 @@ extends CharacterBody2D
 
 @export var bomb = preload("res://Scenes/bomb.tscn")
 @export var flame = preload("res://Scenes/flame.tscn")
-@export var speed = 400
+@export var speed = 500
 
 var time_stop_active = false
 var frozen_enemies = []
 
-var base_speed = 400
+var base_speed = 500
 var slow_sources = []
 var energy = 0
 var max_energy = 100
@@ -64,20 +64,20 @@ func add_energy(amount):
 		
 func _input(event):
 	if event.is_action_pressed("mouse_left"):
-		#if energy >= 20:
-			#energy -= 20
-		fire_bomb()
+		if energy >= 00:
+			energy -= 00
+			fire_bomb()
 	
 	if event.is_action_pressed("mouse_right") and not is_flamethrowing:
-		#if energy >= 30:
-			#energy -= 30
-		is_flamethrowing = true
-		flamethrower_timer = 5.0
-		flame_spawn = 0.0
+		if energy >= 00:
+			energy -= 00
+			is_flamethrowing = true
+			flamethrower_timer = 5.0
+			flame_spawn = 0.0
 	
 	if event.is_action_pressed("key_E") and not time_stop_active:
-		if energy >= 0:
-			energy -= 0
+		if energy >= 00:
+			energy -=00
 			time_stop_active = true
 			
 			time_stop_effect()
@@ -97,7 +97,7 @@ func flame_cone():
 	var base_direction = (mouse_pos - global_position).normalized()
 	
 	var cone_angle = deg_to_rad(60)
-	var num_flames = 5
+	var num_flames = 3
 	
 	for i in range(num_flames):
 		var flame_instance = flame.instantiate()
@@ -105,10 +105,10 @@ func flame_cone():
 		var random_angle = randf_range(-cone_angle/2, cone_angle/2)
 		var flame_direction = base_direction.rotated(random_angle)
 		
-		flame_instance.global_position = global_position + flame_direction * 30
+		flame_instance.global_position = global_position + flame_direction * 10
 		flame_instance.direction = flame_direction
 		flame_instance.rotation = flame_direction.angle()
-		flame_instance.speed = randf_range(700, 900)
+		flame_instance.speed = randf_range(1000, 1200)
 		
 		get_parent().add_child(flame_instance)
 

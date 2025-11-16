@@ -1,9 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://da2h1araeiq00"]
+[gd_scene load_steps=6 format=3 uid="uid://da2h1araeiq00"]
 
 [ext_resource type="Script" path="res://Scripts/flame.gd" id="1_ipwhr"]
-[ext_resource type="Texture2D" uid="uid://ci2cp0lllqpad" path="res://icon.svg" id="2_rfpeg"]
+[ext_resource type="Texture2D" uid="uid://6ceqruupglgv" path="res://Assets/Images/Fire_update.png" id="2_rvtk3"]
+[ext_resource type="AudioStream" uid="uid://2rorej0y6x4d" path="res://Assets/SFX/match-lighting-candle-81020.mp3" id="3_ksisd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bwetu"]
+
+[sub_resource type="Gradient" id="Gradient_3r1pd"]
+offsets = PackedFloat32Array(0, 0.613333, 0.8, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0.427451, 1, 0.886275, 0, 0.643137, 1, 1, 1, 1, 1)
 
 [node name="flame" type="Area2D"]
 collision_layer = 0
@@ -11,8 +16,11 @@ collision_mask = 2
 script = ExtResource("1_ipwhr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.222656, 0.222656)
-texture = ExtResource("2_rfpeg")
+texture_filter = 1
+position = Vector2(-13, 9.53674e-07)
+rotation = -1.59356
+scale = Vector2(2.24454, 2.08131)
+texture = ExtResource("2_rvtk3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_bwetu")
@@ -20,6 +28,23 @@ shape = SubResource("CircleShape2D_bwetu")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.4
 one_shot = true
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(-13, 0)
+amount = 50
+lifetime = 0.1
+emission_shape = 3
+emission_rect_extents = Vector2(1, 1)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 93.8
+scale_amount_min = 3.0
+scale_amount_max = 6.0
+color_ramp = SubResource("Gradient_3r1pd")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ksisd")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -4,6 +4,7 @@ var fire = preload("res://Scenes/fire.tscn")
 var damage_radius = 150
 
 func _ready():
+	$AudioStreamPlayer2D.playing = true
 	$retro_explode.emitting = true
 	$retro_explode.one_shot = true
 	

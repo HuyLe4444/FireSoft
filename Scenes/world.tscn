@@ -1,25 +1,92 @@
-[gd_scene load_steps=5 format=3 uid="uid://b4q0lny3ukqrx"]
+[gd_scene load_steps=8 format=3 uid="uid://b4q0lny3ukqrx"]
 
 [ext_resource type="PackedScene" uid="uid://3llj4o4iioey" path="res://Scenes/player.tscn" id="1_m1qex"]
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_p74ju"]
-[ext_resource type="PackedScene" uid="uid://e7w577g31i7p" path="res://Scenes/virus.tscn" id="3_a3bbp"]
 [ext_resource type="PackedScene" uid="uid://c4jmq4rc2iv7j" path="res://Scenes/core.tscn" id="4_5wjbu"]
+[ext_resource type="Script" path="res://Scripts/UI.gd" id="4_ebof8"]
+[ext_resource type="Texture2D" uid="uid://ei527baab2g6" path="res://Assets/Images/Bomb_Skill.png" id="5_05gqr"]
+[ext_resource type="Texture2D" uid="uid://delcmx17u7mri" path="res://Assets/Images/Fire_Skill.png" id="6_mw656"]
+[ext_resource type="Texture2D" uid="uid://bss88g0yl4lj1" path="res://Assets/Images/Time_Skill.png" id="7_bmp1y"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_p74ju")
 
 [node name="Player" parent="." instance=ExtResource("1_m1qex")]
-
-[node name="virus" parent="." instance=ExtResource("3_a3bbp")]
-position = Vector2(354, 320)
+position = Vector2(729, 525)
 
 [node name="core" parent="." groups=["core"] instance=ExtResource("4_5wjbu")]
 position = Vector2(545, 317)
+scale = Vector2(3, 3)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.01
 
 [node name="SpawnTime" type="Timer" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 28.0
+offset_top = -468.0
+offset_right = 68.0
+offset_bottom = -428.0
+grow_vertical = 0
+scale = Vector2(2, 2)
+script = ExtResource("4_ebof8")
+
+[node name="EnergyBar" type="ProgressBar" parent="CanvasLayer/UI"]
+layout_mode = 0
+offset_top = 200.0
+offset_right = 200.0
+offset_bottom = 220.0
+
+[node name="SkillPanel" type="VBoxContainer" parent="CanvasLayer/UI"]
+layout_mode = 0
+offset_left = -10.0
+offset_top = 5.0
+offset_right = 185.0
+offset_bottom = 205.0
+pivot_offset = Vector2(100, 0)
+
+[node name="Skill1" type="HBoxContainer" parent="CanvasLayer/UI/SkillPanel"]
+layout_mode = 2
+
+[node name="Icon1" type="TextureRect" parent="CanvasLayer/UI/SkillPanel/Skill1"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("5_05gqr")
+
+[node name="Cost1" type="Label" parent="CanvasLayer/UI/SkillPanel/Skill1"]
+layout_mode = 2
+text = "LMB - Bomb: 20"
+
+[node name="Skill2" type="HBoxContainer" parent="CanvasLayer/UI/SkillPanel"]
+layout_mode = 2
+
+[node name="Icon2" type="TextureRect" parent="CanvasLayer/UI/SkillPanel/Skill2"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("6_mw656")
+
+[node name="Cost2" type="Label" parent="CanvasLayer/UI/SkillPanel/Skill2"]
+layout_mode = 2
+text = "RMB - Flame: 30"
+
+[node name="Skill3" type="HBoxContainer" parent="CanvasLayer/UI/SkillPanel"]
+layout_mode = 2
+
+[node name="Icon3" type="TextureRect" parent="CanvasLayer/UI/SkillPanel/Skill3"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("7_bmp1y")
+
+[node name="Cost3" type="Label" parent="CanvasLayer/UI/SkillPanel/Skill3"]
+layout_mode = 2
+text = "E - Time Stop: 50"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="SpawnTime" to="." method="_on_spawn_time_timeout"]
