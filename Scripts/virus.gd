@@ -24,6 +24,7 @@ func take_damage():
 	#print("burn")
 	health -= 1
 	if health <= 0:
+		GameManager.point += 10
 		var player = get_tree().get_first_node_in_group("player")
 		if player and player.has_method("add_energy"):
 			player.add_energy(5)

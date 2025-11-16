@@ -1,9 +1,9 @@
 [gd_scene load_steps=12 format=3 uid="uid://b4q0lny3ukqrx"]
 
 [ext_resource type="PackedScene" uid="uid://3llj4o4iioey" path="res://Scenes/player.tscn" id="1_m1qex"]
-[ext_resource type="Script" path="res://Scripts/world.gd" id="1_p74ju"]
+[ext_resource type="Script" uid="uid://dalcbnmrqpy2m" path="res://Scripts/world.gd" id="1_p74ju"]
 [ext_resource type="PackedScene" uid="uid://c4jmq4rc2iv7j" path="res://Scenes/core.tscn" id="4_5wjbu"]
-[ext_resource type="Script" path="res://Scripts/UI.gd" id="4_ebof8"]
+[ext_resource type="Script" uid="uid://daqluf0qegh1i" path="res://Scripts/UI.gd" id="4_ebof8"]
 [ext_resource type="Texture2D" uid="uid://ei527baab2g6" path="res://Assets/Images/Bomb_Skill.png" id="5_05gqr"]
 [ext_resource type="FontFile" uid="uid://cynom4clhutwq" path="res://Assets/Font/VT323-Regular.ttf" id="6_jnve5"]
 [ext_resource type="Texture2D" uid="uid://delcmx17u7mri" path="res://Assets/Images/Fire_Skill.png" id="6_mw656"]
@@ -39,6 +39,7 @@ one_shot = true
 
 [node name="Finish" type="Timer" parent="."]
 wait_time = 60.0
+one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

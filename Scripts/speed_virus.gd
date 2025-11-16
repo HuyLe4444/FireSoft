@@ -38,6 +38,7 @@ func start_casting():
 func take_damage():
 	health -= 1
 	if health <= 0:
+		GameManager.point += 10
 		#for enemy in buffed_enemies:
 			#if is_instance_valid(enemy) and enemy.has_method("erase_buff"):
 				#enemy.erase_buff(self)
@@ -82,4 +83,3 @@ func erase_buff(source):
 	speed = base_speed + (GameManager.active_speed_buff_enemies * 50)
 	if speed <= base_speed:
 		speed = base_speed
-

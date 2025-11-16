@@ -1,0 +1,121 @@
+[gd_scene load_steps=10 format=3 uid="uid://ci7mxuapouots"]
+
+[ext_resource type="Script" uid="uid://cqessupkk4jst" path="res://Scripts/lose.gd" id="1_g0cl2"]
+[ext_resource type="FontFile" uid="uid://cynom4clhutwq" path="res://Assets/Font/VT323-Regular.ttf" id="1_ie4w5"]
+[ext_resource type="FontFile" uid="uid://dnxs4rcb3qhlt" path="res://Assets/Font/Poxast-R9Jjl.ttf" id="2_qgh6o"]
+[ext_resource type="FontFile" uid="uid://ch6yahtuahp7c" path="res://Assets/Font/ConnectionIii-Rj3W.otf" id="3_7jneu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_emrbh"]
+font = ExtResource("1_ie4w5")
+font_size = 60
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n2ocb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yba4q"]
+bg_color = Color(0.741176, 0.741176, 0.741176, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3lgp4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v2u5l"]
+bg_color = Color(0.741176, 0.741176, 0.741176, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Lose" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g0cl2")
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -532.5
+offset_top = -440.0
+offset_right = 532.5
+offset_bottom = -33.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.85882354, 0, 0.4117647, 1)
+theme_override_fonts/font = ExtResource("2_qgh6o")
+theme_override_font_sizes/font_size = 150
+text = "You LOSE!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Label2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -84.0
+offset_top = 196.5
+offset_right = 84.0
+offset_bottom = 256.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0.69803923, 0.8901961, 1)
+theme_override_fonts/font = ExtResource("3_7jneu")
+theme_override_font_sizes/font_size = 40
+text = "Score: "
+label_settings = SubResource("LabelSettings_emrbh")
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -199.0
+offset_top = 60.0
+offset_right = 199.0
+offset_bottom = 183.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0.698039, 0.890196, 1)
+theme_override_colors/font_hover_color = Color(0, 0.698039, 0.890196, 1)
+theme_override_fonts/font = ExtResource("3_7jneu")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxEmpty_n2ocb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yba4q")
+text = "Play Again"
+
+[node name="Button3" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -198.0
+offset_top = 210.0
+offset_right = 200.0
+offset_bottom = 333.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0.698039, 0.890196, 1)
+theme_override_colors/font_hover_color = Color(0, 0.698039, 0.890196, 1)
+theme_override_fonts/font = ExtResource("3_7jneu")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3lgp4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_v2u5l")
+text = "Exit"
+
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]

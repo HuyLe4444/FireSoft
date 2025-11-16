@@ -16,12 +16,6 @@ func _ready():
 	$DDOSTime.start()
 	
 	$core.global_position = screen_size / 2
-	
-func _process(delta):
-	#print("Active: ", GameManager.active_speed_buff_enemies)
-	if ddos_activate:
-		$Finish.start()
-	pass
 
 func fire_spawn():
 	#var player_pos = $Player.global_position
@@ -39,14 +33,26 @@ func virus_spawn():
 		if rand_normal_enemy == 0:
 			var enemy = virus.instantiate()
 			enemy.global_position = get_random_edge_position()
+			if ddos_activate:
+				enemy.health += 10
+				enemy.speed += 50
+				enemy.base_speed += 50
 			add_child(enemy)
 		if rand_slow_enemy == 0:
 			var enemy = slow_virus.instantiate()
 			enemy.global_position = get_random_edge_position()
+			if ddos_activate:
+				enemy.health += 10
+				enemy.speed += 50
+				enemy.base_speed += 50
 			add_child(enemy)
 		if rand_speed_enemy == 0:
 			var enemy = speed_virus.instantiate()
 			enemy.global_position = get_random_edge_position()
+			if ddos_activate:
+				enemy.health += 10
+				enemy.speed += 50
+				enemy.base_speed += 50
 			add_child(enemy)
 	
 func get_random_edge_position():
@@ -110,6 +116,8 @@ func ddos_warning():
 	flash_warning(label, canvas_layer)
 
 func flash_warning(label: Label, canvas_layer: CanvasLayer):
+	print("time start")
+	$Finish.start()
 	var flash_count = 6  # Nhấp nháy 6 lần
 	
 	for i in range(flash_count):
@@ -122,5 +130,4 @@ func flash_warning(label: Label, canvas_layer: CanvasLayer):
 	canvas_layer.queue_free()
 	
 func _on_finish_timeout():
-	print("You Win")
-	pass # Replace with function body.
+	get_tree().change_scene_to_file("res://Scenes/win.tscn")

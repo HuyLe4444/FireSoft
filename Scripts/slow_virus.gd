@@ -38,6 +38,7 @@ func start_casting():
 func take_damage():
 	health -= 1
 	if health <= 0:
+		GameManager.point += 10
 		if target and target.has_method("add_energy"):
 			target.add_energy(5)
 		if target and target.has_method("remove_slow"):

@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://bl5aj6e2n04qp"]
 
-[ext_resource type="Script" path="res://Scripts/speed_virus.gd" id="1_tvmhp"]
+[ext_resource type="Script" uid="uid://vbcvoo0r6oe5" path="res://Scripts/speed_virus.gd" id="1_tvmhp"]
 [ext_resource type="Texture2D" uid="uid://5gvwirftcr5i" path="res://Assets/Images/speed_virus_cast.png" id="2_sjyt0"]
 [ext_resource type="Texture2D" uid="uid://dmwv2hplog1i8" path="res://Assets/Images/speed_virus.png" id="3_lt0h6"]
 

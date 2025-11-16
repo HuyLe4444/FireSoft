@@ -1,6 +1,7 @@
 extends Node
 
 var active_speed_buff_enemies = 0
+var point = 0
 
 func _process(delta):
 	if active_speed_buff_enemies <= 0:

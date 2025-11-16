@@ -9,10 +9,5 @@ func take_damage():
 		game_over()
 		
 func game_over():
-	print("GAME OVER")
-	get_tree().paused = true
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+	get_tree().change_scene_to_file("res://Scenes/lose.tscn")
+	#get_tree().paused = true

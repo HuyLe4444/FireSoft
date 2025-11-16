@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://e7w577g31i7p"]
 
-[ext_resource type="Script" path="res://Scripts/virus.gd" id="1_xwqk0"]
+[ext_resource type="Script" uid="uid://bwu7gsu56tykp" path="res://Scripts/virus.gd" id="1_xwqk0"]
 [ext_resource type="Texture2D" uid="uid://cwlfui6gqjmnm" path="res://Assets/Images/Virus.png" id="2_45vr7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rno61"]
