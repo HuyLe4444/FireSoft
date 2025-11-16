@@ -47,7 +47,7 @@ scale = Vector2(0.658447, 0.658447)
 sprite_frames = SubResource("SpriteFrames_uvl36")
 animation = &"run"
 autoplay = "run"
-frame_progress = 0.386663
+frame_progress = 0.527897
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0

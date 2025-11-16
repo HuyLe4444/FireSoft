@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var animation = $Sprite2D
+
 var health = 5
 var speed = 100
 var base_speed = 100
@@ -11,6 +13,7 @@ var is_frozen = false
 #var buffed_enemies = []
 
 func _ready():
+	animation.play("default")
 	speed = speed + (GameManager.active_speed_buff_enemies * 50)
 	target = get_tree().get_first_node_in_group("core")
 	add_to_group("enemy")
@@ -27,6 +30,7 @@ func _physics_process(delta):
 			move_and_slide()
 			
 func start_casting():
+	animation.play("hold")
 	is_casting = true
 	velocity = Vector2.ZERO
 	$CastTime.start()
@@ -58,6 +62,7 @@ func unfreeze(original_speed):
 	speed = original_speed
 
 func _on_cast_time_timeout():
+	animation.play("cast")
 	is_casting = false
 	has_cast = true
 	apply_speed_up()

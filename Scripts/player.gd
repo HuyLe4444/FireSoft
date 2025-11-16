@@ -64,26 +64,26 @@ func add_energy(amount):
 		
 func _input(event):
 	if event.is_action_pressed("mouse_left"):
-		if energy >= 00:
-			energy -= 00
+		if energy >= 20:
+			energy -= 20
 			fire_bomb()
 	
 	if event.is_action_pressed("mouse_right") and not is_flamethrowing:
-		if energy >= 00:
-			energy -= 00
+		if energy >= 30:
+			energy -= 30
 			is_flamethrowing = true
 			flamethrower_timer = 5.0
 			flame_spawn = 0.0
 	
 	if event.is_action_pressed("key_E") and not time_stop_active:
-		if energy >= 00:
-			energy -=00
+		if energy >= 50:
+			energy -= 50
 			time_stop_active = true
 			
 			time_stop_effect()
 			enemy_frozen()
 			
-			await get_tree().create_timer(2.0).timeout
+			await get_tree().create_timer(3.0).timeout
 			
 			end_time_stop()
 		

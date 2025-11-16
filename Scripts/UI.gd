@@ -1,12 +1,14 @@
 extends Control
 
 @onready var energy_bar = $EnergyBar
+@onready var health_bar = $HealthBar
 #@onready var energy_label = $EnergyLabel
 @onready var skill1_cost = $SkillPanel/Skill1/Cost1
 @onready var skill2_cost = $SkillPanel/Skill2/Cost2
 @onready var skill3_cost = $SkillPanel/Skill3/Cost3
 
 var player = null
+var core = null
 
 func _ready():
 	energy_bar.max_value = 100
@@ -18,12 +20,15 @@ func _ready():
 	
 	await get_tree().process_frame
 	player = get_tree().get_first_node_in_group("player")
+	core = get_tree().get_first_node_in_group("core")
 	
 func _process(delta):
 	if player:
 		energy_bar.value = player.energy
 		#energy_label.text = "Energy: " + str(player.energy) + "/" + str(player.max_energy)
-	
+	if core:
+		health_bar.value = core.health
+		
 	update_skill_availability()
 
 func update_skill_availability():
